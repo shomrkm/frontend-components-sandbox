@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Header } from '../../organisms';
+import { Header } from '@/components/organisms';
 import './page.css';
 
 type User = {
