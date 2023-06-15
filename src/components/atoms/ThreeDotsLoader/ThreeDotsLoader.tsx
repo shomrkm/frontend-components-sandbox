@@ -1,5 +1,5 @@
-import React from "react";
-import "./ThreeDotsLoader.css";
+import React from 'react';
+import './ThreeDotsLoader.css';
 
 export const ThreeDotsLoader = () => {
   return (
