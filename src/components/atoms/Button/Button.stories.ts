@@ -49,6 +49,22 @@ export const Danger: Story = {
   },
 };
 
+export const XSmall: Story = {
+  args: {
+    variant: 'primary',
+    size: 'xs',
+    children: 'Button',
+  },
+};
+
+export const Small: Story = {
+  args: {
+    variant: 'primary',
+    size: 'sm',
+    children: 'Button',
+  },
+};
+
 export const Middle: Story = {
   args: {
     variant: 'primary',
