@@ -1,6 +1,36 @@
 import { css, keyframes } from '@emotion/react';
 import React from 'react';
 
+const widthSize = {
+  sm: css`
+    width: 42px;
+  `,
+  md: css`
+    width: 60px;
+  `,
+  lg: css`
+    width: 78px;
+  `,
+};
+
+const dotSizes = {
+  sm: css`
+    width: 10px;
+    height: 10px;
+    margin: 1px;
+  `,
+  md: css`
+    width: 14px;
+    height: 14px;
+    margin: 2px;
+  `,
+  lg: css`
+    width: 18px;
+    height: 18px;
+    margin: 3px;
+  `,
+};
+
 const bounce = keyframes`
    0%,
   80%,
@@ -15,34 +45,35 @@ const bounce = keyframes`
 const style = css`
   display: flex;
   justify-content: center;
-  width: 60px;
-  gap: 2px;
-  & > div {
-    margin: 1px;
-    width: 16px;
-    height: 16px;
-    background-color: #333;
-    border-radius: 50%;
+`;
 
-    animation-name: ${bounce};
-    animation-duration: 1.4s;
-    animation-iteration-count: infinite;
+const dotsStyle = css`
+  margin: 2px;
+  background-color: #333;
+  border-radius: 50%;
+
+  animation-name: ${bounce};
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+
+  :nth-child(1) {
+    animation-delay: -0.32s;
+  }
+  :nth-child(2) {
+    animation-delay: -0.16s;
   }
 `;
 
-const bounce1 = css`
-  animation-delay: -0.32s;
-`;
-const bounce2 = css`
-  animation-delay: -0.16s;
-`;
+export type Props = {
+  size?: keyof typeof dotSizes;
+};
 
-export const ThreeDotsLoader = () => {
+export const ThreeDotsLoader = ({ size = 'md' }: Props) => {
   return (
-    <div css={style}>
-      <div css={bounce1}></div>
-      <div css={bounce2}></div>
-      <div></div>
+    <div css={[style, widthSize[size]]}>
+      <div css={[dotsStyle, dotSizes[size]]}></div>
+      <div css={[dotsStyle, dotSizes[size]]}></div>
+      <div css={[dotsStyle, dotSizes[size]]}></div>
     </div>
   );
 };
