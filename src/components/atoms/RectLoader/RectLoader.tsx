@@ -18,39 +18,40 @@ const style = css`
   width: 50px;
   height: 40px;
   gap: 2px;
-  & > div {
-    background-color: #333;
-    width: 6px;
-    height: 100%;
+`;
 
-    animation-name: ${stretch};
-    animation-duration: 1.2s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
+const rectStyle = css`
+  background-color: #333;
+  width: 6px;
+  height: 100%;
+
+  animation-name: ${stretch};
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+
+  &:nth-child(2) {
+    animation-delay: -1.1s;
   }
-`;
-
-const child2 = css`
-  animation-delay: -1.1s;
-`;
-const child3 = css`
-  animation-delay: -1s;
-`;
-const child4 = css`
-  animation-delay: -0.9s;
-`;
-const child5 = css`
-  animation-delay: -0.8s;
+  &:nth-child(3) {
+    animation-delay: -1s;
+  }
+  &:nth-child(4) {
+    animation-delay: -0.9s;
+  }
+  &:nth-child(5) {
+    animation-delay: -0.8s;
+  }
 `;
 
 export const RectLoader = () => {
   return (
     <div css={style}>
       <div></div>
-      <div css={child2}></div>
-      <div css={child3}></div>
-      <div css={child4}></div>
-      <div css={child5}></div>
+      <div css={rectStyle}></div>
+      <div css={rectStyle}></div>
+      <div css={rectStyle}></div>
+      <div css={rectStyle}></div>
     </div>
   );
 };
