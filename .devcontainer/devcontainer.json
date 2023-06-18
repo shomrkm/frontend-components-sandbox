@@ -9,7 +9,11 @@
           "source.fixAll.eslint": true
         }
       },
-      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode", "styled-components.vscode-styled-components"]
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "styled-components.vscode-styled-components"
+      ]
     }
   },
   "service": "app",
