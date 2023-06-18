@@ -3,7 +3,7 @@ import React from 'react';
 
 const variants = {
   primary: css`
-    background-color: rgb(37 99 235);
+    background-color: #2563eb;
     color: white;
   `,
   inverse: css`
@@ -11,7 +11,7 @@ const variants = {
     color: rgb(37, 99 235);
   `,
   danger: css`
-    background-color: rgb(220 38 38);
+    background-color: #dc2626;
     color: white;
   `,
 };
