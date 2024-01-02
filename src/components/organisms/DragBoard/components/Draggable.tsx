@@ -3,14 +3,21 @@ import { CSS } from '@dnd-kit/utilities';
 import React from 'react';
 import styled from 'styled-components';
 
+import { User } from '../types';
+
 type Props = {
   id: string;
+  user: User;
   children: React.ReactNode;
 };
 
-export const Draggable = ({ id, children }: Props) => {
+/**
+ * ドロップ可能なアイテムを構成するコンポーネント
+ */
+export const Draggable = ({ id, user, children }: Props) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
+    data: user, // ここでユーザ情報を保持させることで、ドロップされた時にそのユーザデータを参照できる
   });
 
   const style = {
