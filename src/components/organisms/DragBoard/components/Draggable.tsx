@@ -3,27 +3,23 @@ import { CSS } from '@dnd-kit/utilities';
 import React from 'react';
 import styled from 'styled-components';
 
-import { User } from '../types';
-
-type Props = {
+type Props<T extends Record<string, any>> = {
   id: string;
-  user: User;
+  data: T;
   children: React.ReactNode;
 };
 
 /**
  * ドロップ可能なアイテムを構成するコンポーネント
  */
-export const Draggable = ({ id, user, children }: Props) => {
+export const Draggable = <T extends Record<string, unknown>>({ id, data, children }: Props<T>) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
-    data: user, // ここでユーザ情報を保持させることで、ドロップされた時にそのユーザデータを参照できる
+    data, // ここでユーザ情報を保持させることで、ドロップされた時にそのユーザデータを参照できる
   });
 
   const style = {
     transform: CSS.Translate.toString(transform),
-    padding: '0',
-    border: 'none',
   };
 
   return (
@@ -37,6 +33,7 @@ const StyledDraggable = styled.div`
   background-color: lightseagreen;
   border-radius: 1rem;
   height: 50px;
-  width: 80px;
-  padding: 0.5rem;
+  width: 170px;
+  padding: 1rem;
+  overflow: hidden;
 `;

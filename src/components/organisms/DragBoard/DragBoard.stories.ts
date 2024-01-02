@@ -19,5 +19,11 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     columns: ['A', 'B', 'C'],
+    users: [
+      { id: 'aaa', data: { name: 'Shotaro Murakami', rank: 'A' } },
+      { id: 'bbb', data: { name: 'Mats Hummels', rank: 'A' } },
+      { id: 'ccc', data: { name: 'Jotn Smith', rank: 'C' } },
+    ],
+    groupBy: 'rank',
   },
 };
