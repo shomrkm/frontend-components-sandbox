@@ -1,6 +1,7 @@
 import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import React from 'react';
+import styled from 'styled-components';
 
 type Props = {
   id: string;
@@ -19,8 +20,16 @@ export const Draggable = ({ id, children }: Props) => {
   };
 
   return (
-    <button ref={setNodeRef} style={style} {...listeners} {...attributes}>
-      {children}
-    </button>
+    <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
+      <StyledDraggable className="draggable-item">{children}</StyledDraggable>
+    </div>
   );
 };
+
+const StyledDraggable = styled.div`
+  background-color: lightseagreen;
+  border-radius: 1rem;
+  height: 50px;
+  width: 80px;
+  padding: 0.5rem;
+`;

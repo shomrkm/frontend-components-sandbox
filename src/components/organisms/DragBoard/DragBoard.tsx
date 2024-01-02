@@ -1,25 +1,19 @@
-import './drag_board.css';
 import { DndContext, DragEndEvent, UniqueIdentifier } from '@dnd-kit/core';
 import React, { useState } from 'react';
+import styled from 'styled-components';
 
 import { Draggable } from './components/Draggable';
 import { Droppable } from './components/Droppable';
 
-const DraggableItem = () => <div className="draggable-item">Draggable Item</div>;
-
 const DroppableZone = ({ children }: { children: React.ReactNode }) => (
-  <div className="drop-zone">{children}</div>
+  <StyledDroppableZone className="drop-zone">{children}</StyledDroppableZone>
 );
 
 export const DragBoard = () => {
   const container = ['A', 'B', 'C'];
   const [parent, setParent] = useState<UniqueIdentifier | null>(null);
 
-  const draggableMarkup = (
-    <Draggable id="draggable">
-      <DraggableItem />
-    </Draggable>
-  );
+  const draggableMarkup = <Draggable id="draggable">drag me</Draggable>;
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { over } = event;
@@ -29,7 +23,7 @@ export const DragBoard = () => {
   return (
     <DndContext onDragEnd={handleDragEnd}>
       {parent === null ? draggableMarkup : null}
-      <div className="drop-container">
+      <StyledDroppableContainer className="drop-container">
         {container.map((id) => (
           <Droppable key={id} id={id}>
             {parent === id ? (
@@ -39,7 +33,20 @@ export const DragBoard = () => {
             )}
           </Droppable>
         ))}
-      </div>
+      </StyledDroppableContainer>
     </DndContext>
   );
 };
+
+const StyledDroppableContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+const StyledDroppableZone = styled.div`
+  background-color: beige;
+  height: 200px;
+  width: 100px;
+  border-radius: 1rem;
+  padding: 1rem;
+`;
