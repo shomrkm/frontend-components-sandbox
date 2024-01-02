@@ -1,0 +1,20 @@
+.drop-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.drop-zone {
+  background-color: beige;
+  height: 200px;
+  width: 100px;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.draggable-item {
+  background-color: lightseagreen;
+  border-radius: 1rem;
+  height: 50px;
+  width: 80px;
+  padding: 0.5rem;
+}
