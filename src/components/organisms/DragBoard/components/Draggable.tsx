@@ -1,7 +1,6 @@
 import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import React from 'react';
-import styled from 'styled-components';
 
 type Props<T extends Record<string, any>> = {
   id: string;
@@ -24,16 +23,7 @@ export const Draggable = <T extends Record<string, unknown>>({ id, data, childre
 
   return (
     <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
-      <StyledDraggable className="draggable-item">{children}</StyledDraggable>
+      <div>{children}</div>
     </div>
   );
 };
-
-const StyledDraggable = styled.div`
-  background-color: lightseagreen;
-  border-radius: 1rem;
-  height: 50px;
-  width: 170px;
-  padding: 1rem;
-  overflow: hidden;
-`;

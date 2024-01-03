@@ -2,55 +2,49 @@ import { useDroppable } from '@dnd-kit/core';
 import React from 'react';
 import styled from 'styled-components';
 
-import { User } from '../types';
+import { Base } from '../types';
 
 import { Draggable } from './Draggable';
-import { UserCard } from './UserCard';
 
-type Props = {
+type Props<T> = {
   id: string;
-  users: User[];
+  data: T[];
+  children({ entry }: { entry: T }): React.ReactNode;
 };
 
-export const Droppable = ({ id, users }: Props) => {
+export const Droppable = <T extends Base>({ id, data, children }: Props<T>) => {
   const { isOver, setNodeRef } = useDroppable({
     id,
   });
   const style = {
-    // backgroundColor: isOver ? 'red' : undefined,
-    border: isOver ? 'solid red' : undefined,
-    borderRadius: isOver ? '1rem' : undefined,
+    border: isOver ? 'solid #0077c7' : undefined,
+    borderRadius: isOver ? '0.5rem' : undefined,
   };
 
   return (
     <div ref={setNodeRef} style={style}>
       <StyledDroppableZone>
-        <Draggables users={users} />
+        {data.length === 0 ? (
+          <div>empty</div>
+        ) : (
+          <StyledDraggableContainer>
+            {data.map((record) => (
+              <Draggable id={record.id} key={record.id} data={record}>
+                {children({ entry: record })}
+              </Draggable>
+            ))}
+          </StyledDraggableContainer>
+        )}
       </StyledDroppableZone>
     </div>
   );
 };
 
-// 1つの列に格納する Draggable アイテム群
-const Draggables = ({ users }: { users: User[] }) => {
-  return users.length === 0 ? (
-    <div>empty</div>
-  ) : (
-    <StyledDraggableContainer>
-      {users.map((user) => (
-        <Draggable id={user.id} key={user.id} data={user}>
-          <UserCard user={user} />
-        </Draggable>
-      ))}
-    </StyledDraggableContainer>
-  );
-};
-
 const StyledDroppableZone = styled.div`
-  background-color: beige;
+  background-color: #f5f4f3;
   height: 500px;
   width: 200px;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 1rem;
 `;
 

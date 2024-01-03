@@ -19,4 +19,11 @@ const StyledDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  background-color: #00c4cc;
+  color: #fff;
+  border-radius: 1rem;
+  padding: 1rem;
+  overflow: hidden;
+  height: 50px;
+  width: 170px;
 `;

@@ -3,32 +3,38 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Droppable } from './components/Droppable';
-import { useUserDragDrop } from './hooks/useUserDragDrop';
-import { User } from './types';
+import { UserCard } from './components/UserCard';
+import { useBoardData } from './hooks/useBoardData';
+import { Base } from './types';
 
-type Props = {
-  columns: string[];
-  users: User[];
-  groupBy: keyof User['data'];
+type Props<T extends Base> = {
+  column: {
+    name: keyof T['data'];
+    values: string[];
+  };
+  users: T[];
 };
 
-export const DragBoard = ({ columns, users, groupBy }: Props) => {
-  const { usersFilteredBy, updateUser } = useUserDragDrop({
-    defaultUsers: users,
-    updateAttribute: groupBy,
+export const DragBoard = <T extends Base>({ column, users }: Props<T>) => {
+  const { name: colName, values } = column;
+  const { dataFilteredBy: usersFilteredBy, update: updateUser } = useBoardData({
+    defaultData: users,
+    updateAttribute: colName,
   });
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { over, active } = event;
     if (!over) return;
-    updateUser(active.data.current as User, over.id as string);
+    updateUser(active.data.current as T, over.id as string);
   };
 
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <StyledDroppableContainer className="drop-container">
-        {columns.map((col) => (
-          <Droppable key={col} id={col} users={usersFilteredBy(groupBy, col)} />
+        {values.map((col) => (
+          <Droppable key={col} id={col} data={usersFilteredBy(colName, col)}>
+            {({ entry }) => <UserCard user={entry} />}
+          </Droppable>
         ))}
       </StyledDroppableContainer>
     </DndContext>
