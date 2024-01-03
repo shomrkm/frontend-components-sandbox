@@ -17,7 +17,7 @@ export const Droppable = <T extends Base>({ id, data, children }: Props<T>) => {
     id,
   });
   const style = {
-    border: isOver ? 'solid #0077c7' : undefined,
+    border: isOver ? 'solid #00c4cc' : undefined,
     borderRadius: isOver ? '0.5rem' : undefined,
   };
 
@@ -43,13 +43,14 @@ export const Droppable = <T extends Base>({ id, data, children }: Props<T>) => {
 const StyledDroppableZone = styled.div`
   background-color: #f5f4f3;
   height: 500px;
-  width: 200px;
+  width: 300px;
   border-radius: 0.5rem;
   padding: 1rem;
 `;
 
 const StyledDraggableContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 1rem;
 `;

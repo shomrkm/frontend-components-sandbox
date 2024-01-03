@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
-import { User } from '../types';
-
 type Props = {
-  user: User;
+  name: string;
+  img: string;
 };
 
-export const UserCard = ({ user }: Props) => {
+export const UserCard = ({ name, img }: Props) => {
   return (
     <StyledDiv>
-      <div>{user.data.name}</div>
+      <StyledImg src={img} alt={name} />
+      <StyledName>{name}</StyledName>
     </StyledDiv>
   );
 };
@@ -18,12 +18,27 @@ const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  background-color: #00c4cc;
-  color: #fff;
-  border-radius: 1rem;
-  padding: 1rem;
+  align-items: center;
+  background-color: white;
+  color: #23221e;
+  border-radius: 2px;
+  border: 1px solid #d6d3d0;
+  box-shadow: 1px 1px 1px #d6d3d0;
   overflow: hidden;
-  height: 50px;
-  width: 170px;
+  height: 120px;
+  width: 100px;
+`;
+
+const StyledImg = styled.img`
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  object-position: center;
+`;
+
+const StyledName = styled.p`
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 0;
+  padding: 0.5rem;
 `;

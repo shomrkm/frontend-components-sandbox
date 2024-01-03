@@ -29,20 +29,53 @@ export const DragBoard = <T extends Base>({ column, users }: Props<T>) => {
   };
 
   return (
-    <DndContext onDragEnd={handleDragEnd}>
-      <StyledDroppableContainer className="drop-container">
-        {values.map((col) => (
-          <Droppable key={col} id={col} data={usersFilteredBy(colName, col)}>
-            {({ entry }) => <UserCard user={entry} />}
-          </Droppable>
-        ))}
-      </StyledDroppableContainer>
-    </DndContext>
+    <StyledWrapper>
+      <DndContext onDragEnd={handleDragEnd}>
+        <StyledDragWrapper>
+          <StyledDroppableContainer className="drop-container">
+            {values.map((col) => (
+              <StyledColumn key={col}>
+                <StyledHeaderColumn key={`head_${col}`}>{col}</StyledHeaderColumn>
+                <Droppable key={col} id={col} data={usersFilteredBy(colName, col)}>
+                  {({ entry }) => (
+                    <UserCard name={entry.data?.name as string} img={entry.data?.img as string} />
+                  )}
+                </Droppable>
+              </StyledColumn>
+            ))}
+          </StyledDroppableContainer>
+        </StyledDragWrapper>
+      </DndContext>
+    </StyledWrapper>
   );
 };
 
+const StyledWrapper = styled.div`
+  border: 0.5px solid #706d65;
+  padding: 2rem;
+  margin: 2rem;
+`;
+
+const StyledDragWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+const StyledHeaderColumn = styled.div`
+  width: 300px;
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+`;
+
 const StyledDroppableContainer = styled.div`
   display: flex;
-  gap: 1rem;
-  margin: 2rem;
+  gap: 0.5rem;
+  margin: 0 2rem;
 `;

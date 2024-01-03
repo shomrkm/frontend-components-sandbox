@@ -8,5 +8,6 @@ export type User = {
   data: {
     name: string;
     rank: string;
+    img: string;
   };
 };
