@@ -23,7 +23,7 @@ export const Default: Story = {
   args: {
     column: {
       name: 'rank',
-      values: ['A', 'B', 'C'],
+      values: ['未設定', 'A', 'B', 'C', 'D'],
     },
     users: [
       {
