@@ -20,7 +20,7 @@ type Props<T extends Base> = {
 
 export const DragBoard = <T extends Base>({ column, users }: Props<T>) => {
   const { name: colName, values } = column;
-  const { dataFilteredBy, update, reset, ratio } = useBoardData({
+  const { dataFilteredBy, update, reset, getRatio, getChangeLog } = useBoardData({
     defaultData: users,
     updateAttribute: colName,
   });
@@ -45,12 +45,12 @@ export const DragBoard = <T extends Base>({ column, users }: Props<T>) => {
   return (
     <StyledWrapper>
       <h1>Drag Board</h1>
-      <DragBoardToolbar onUpdate={handleUpdate} onReset={reset} />
+      <DragBoardToolbar onUpdate={handleUpdate} onReset={reset} changeLog={getChangeLog(column)} />
       <DragDropContext onDragEnd={handleDragEnd}>
         <StyledDroppableContainer className="drop-container">
           {values.map((col) => (
             <StyledColumn key={col}>
-              <ColumnHeader key={`head_${col}`} col={col} ratio={ratio(col)} />
+              <ColumnHeader key={`head_${col}`} col={col} ratio={getRatio(col)} />
               <Droppables key={col} id={col} data={dataFilteredBy(colName, col)}>
                 {({ entry }) => (
                   <UserCard name={entry.data.name as string} img={entry.data.img as string} />
