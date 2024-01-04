@@ -11,17 +11,20 @@ export const useBoardData = <T extends Base>({ defaultData, updateAttribute }: P
   const [data, setData] = useState<T[]>(defaultData);
 
   const update = useCallback(
-    (record: T, value: string) => {
+    (id: string, value: string, index: number) => {
       setData((prev) => {
+        const prevRecord = prev.find((r) => r.id === id);
+        if (!prevRecord) return prev;
+
         const updatedRecord = {
-          ...record,
+          ...prevRecord,
           data: {
-            ...record.data,
+            ...prevRecord.data,
             [updateAttribute]: value,
           },
         };
-        const tempData = prev.filter((r) => r.id !== record.id);
-        tempData.push(updatedRecord);
+        const tempData = prev.filter((r) => r.id !== id);
+        tempData.splice(index, 0, updatedRecord);
         return tempData;
       });
     },
@@ -39,11 +42,22 @@ export const useBoardData = <T extends Base>({ defaultData, updateAttribute }: P
     setData(defaultData);
   }, [defaultData]);
 
+  const ratio = useCallback(
+    (value: unknown) => {
+      const count = data.filter(
+        (r) => getValue<T['data'], keyof T['data']>(r.data, updateAttribute) === value
+      ).length;
+      return count / data.length;
+    },
+    [data, updateAttribute]
+  );
+
   return {
     data,
     dataFilteredBy,
     update,
     reset,
+    ratio,
   };
 };
 

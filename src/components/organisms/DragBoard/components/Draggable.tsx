@@ -1,29 +1,33 @@
-import { useDraggable } from '@dnd-kit/core';
-import { CSS } from '@dnd-kit/utilities';
 import React from 'react';
+import { Draggable } from 'react-beautiful-dnd';
+import styled from 'styled-components';
 
-type Props<T extends Record<string, any>> = {
+type Props = {
   id: string;
-  data: T;
+  index: number;
   children: React.ReactNode;
 };
 
 /**
  * ドロップ可能なアイテムを構成するコンポーネント
  */
-export const Draggable = <T extends Record<string, unknown>>({ id, data, children }: Props<T>) => {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id,
-    data, // ここでユーザ情報を保持させることで、ドロップされた時にそのユーザデータを参照できる
-  });
-
-  const style = {
-    transform: CSS.Translate.toString(transform),
-  };
-
+export const DraggableItem = ({ id, index, children }: Props) => {
   return (
-    <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
-      <div>{children}</div>
-    </div>
+    <Draggable draggableId={id} index={index}>
+      {(provided, snapshot) => (
+        <StyledWrapper
+          ref={provided.innerRef}
+          isDragging={snapshot.isDragging}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          {children}
+        </StyledWrapper>
+      )}
+    </Draggable>
   );
 };
+
+const StyledWrapper = styled.div<{ isDragging: boolean }>`
+  border: ${(props) => (props.isDragging ? 'solid #0077c7' : 'solid white')};
+`;
