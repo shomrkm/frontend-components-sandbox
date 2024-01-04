@@ -1,3 +1,5 @@
+import 'smarthr-ui/smarthr-ui.css';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { DragBoard } from './DragBoard';
@@ -5,7 +7,7 @@ import { User } from './types';
 
 const meta = {
   title: 'Components/Organisms/DragBoard',
-  component: DragBoard,
+  component: DragBoard<User>,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   parameters: {
@@ -35,5 +37,9 @@ export const Default: Story = {
       { id: 'fff', data: { name: '伊東 純也', rank: 'B', img: 'https://iili.io/J5G3Eu4.png' } },
       { id: 'ggg', data: { name: '上田 綺世', rank: 'B', img: 'https://iili.io/J5GFWOv.png' } },
     ],
+    onUpdate: (data: User[]) => {
+      alert(JSON.stringify(data));
+      return true;
+    },
   },
 };

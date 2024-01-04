@@ -28,9 +28,12 @@ export const useBoardData = <T extends Base>({ defaultData, updateAttribute }: P
     [updateAttribute]
   );
 
-  const dataFilteredBy = (attribute: keyof T['data'], value: string) => {
-    return data.filter((r) => getValue<T['data'], keyof T['data']>(r.data, attribute) === value);
-  };
+  const dataFilteredBy = useCallback(
+    (attribute: keyof T['data'], value: string) => {
+      return data.filter((r) => getValue<T['data'], keyof T['data']>(r.data, attribute) === value);
+    },
+    [data]
+  );
 
   const reset = useCallback(() => {
     setData(defaultData);
@@ -38,7 +41,7 @@ export const useBoardData = <T extends Base>({ defaultData, updateAttribute }: P
 
   return {
     data,
-    dataFilteredBy: dataFilteredBy,
+    dataFilteredBy,
     update,
     reset,
   };

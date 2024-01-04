@@ -25,7 +25,7 @@ export const Droppable = <T extends Base>({ id, data, children }: Props<T>) => {
     <div ref={setNodeRef} style={style}>
       <StyledDroppableZone>
         {data.length === 0 ? (
-          <div>empty</div>
+          <StyledEmptyDiv>empty</StyledEmptyDiv>
         ) : (
           <StyledDraggableContainer>
             {data.map((record) => (
@@ -53,4 +53,9 @@ const StyledDraggableContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
+`;
+
+const StyledEmptyDiv = styled.div`
+  text-align: center;
+  color: gray;
 `;
