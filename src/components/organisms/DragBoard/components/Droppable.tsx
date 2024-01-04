@@ -1,10 +1,10 @@
-import { useDroppable } from '@dnd-kit/core';
 import React from 'react';
+import { Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
 import { Base } from '../types';
 
-import { Draggable } from './Draggable';
+import { DraggableItem } from './Draggable';
 
 type Props<T> = {
   id: string;
@@ -12,40 +12,41 @@ type Props<T> = {
   children({ entry }: { entry: T }): React.ReactNode;
 };
 
-export const Droppable = <T extends Base>({ id, data, children }: Props<T>) => {
-  const { isOver, setNodeRef } = useDroppable({
-    id,
-  });
-  const style = {
-    border: isOver ? 'solid #00c4cc' : undefined,
-    borderRadius: isOver ? '0.5rem' : undefined,
-  };
-
+export const Droppables = <T extends Base>({ id, data, children }: Props<T>) => {
   return (
-    <div ref={setNodeRef} style={style}>
-      <StyledDroppableZone>
-        {data.length === 0 ? (
-          <StyledEmptyDiv>empty</StyledEmptyDiv>
-        ) : (
-          <StyledDraggableContainer>
-            {data.map((record) => (
-              <Draggable id={record.id} key={record.id} data={record}>
-                {children({ entry: record })}
-              </Draggable>
-            ))}
-          </StyledDraggableContainer>
-        )}
-      </StyledDroppableZone>
-    </div>
+    <Droppable droppableId={id}>
+      {(provided, snapshot) => (
+        <StyledDroppableZone
+          ref={provided.innerRef}
+          isDragingOver={snapshot.isDraggingOver}
+          {...provided.droppableProps}
+        >
+          {data.length === 0 ? (
+            <StyledEmptyDiv>empty</StyledEmptyDiv>
+          ) : (
+            <StyledDraggableContainer>
+              {data.map((record, index) => (
+                <DraggableItem id={record.id} key={record.id} index={index}>
+                  {children({ entry: record })}
+                </DraggableItem>
+              ))}
+            </StyledDraggableContainer>
+          )}
+          {provided.placeholder}
+        </StyledDroppableZone>
+      )}
+    </Droppable>
   );
 };
 
-const StyledDroppableZone = styled.div`
+const StyledDroppableZone = styled.div<{ isDragingOver: boolean }>`
   background-color: #f5f4f3;
   height: 500px;
   width: 300px;
   border-radius: 0.5rem;
+  border: ${(props) => props.isDragingOver && '2px solid #00c4cc'};
   padding: 1rem;
+  overflow-y: auto;
 `;
 
 const StyledDraggableContainer = styled.div`
