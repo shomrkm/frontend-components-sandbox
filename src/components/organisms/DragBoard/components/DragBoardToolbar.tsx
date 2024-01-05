@@ -1,13 +1,16 @@
 import React, { useCallback } from 'react';
-import { Button, Cluster, Stack } from 'smarthr-ui';
+import { Button, Cluster, Stack, Text } from 'smarthr-ui';
 import styled from 'styled-components';
+
+import { ChangeLog } from '../hooks/useBoardData';
 
 type Props = {
   onReset: () => void;
   onUpdate: () => boolean;
+  changeLog: ChangeLog[];
 };
 
-export const DragBoardToolbar = ({ onUpdate, onReset }: Props) => {
+export const DragBoardToolbar = ({ onUpdate, onReset, changeLog }: Props) => {
   const handleUpdate = useCallback(() => {
     onUpdate();
     console.log('updated');
@@ -19,10 +22,14 @@ export const DragBoardToolbar = ({ onUpdate, onReset }: Props) => {
 
   return (
     <Cluster gap={2}>
-      <StyledInfo justify="flex-start" align="center">
-        <Stack gap={0}>
-          <p>A: 7人 → 9人</p>
-          <p>B: 2人 → 3人</p>
+      <StyledInfo justify="flex-start" align="flex-start">
+        <Stack gap={0.25}>
+          {changeLog.map((log) => (
+            <StyledChangeLogText
+              key={log.value}
+              isChanged={log.previous !== log.current}
+            >{`${log.value}: ${log.previous} → ${log.current}`}</StyledChangeLogText>
+          ))}
         </Stack>
       </StyledInfo>
       <StyledButtonDiv>
@@ -41,12 +48,18 @@ export const DragBoardToolbar = ({ onUpdate, onReset }: Props) => {
 
 const StyledInfo = styled(Cluster)`
   border: 1px solid #d6d3d0;
-  border-radius: 0.5rem;
+  border-radius: 4px;
   padding: 1rem;
   flex-direction: column;
+  width: 200px;
 `;
 
 const StyledButtonDiv = styled.div`
   display: flex;
   align-items: flex-start;
+`;
+
+const StyledChangeLogText = styled(Text)<{ isChanged: boolean }>`
+  color: ${(props) => props.isChanged && '#e01e5a'};
+  font-weight: ${(props) => props.isChanged && 'bold'};
 `;

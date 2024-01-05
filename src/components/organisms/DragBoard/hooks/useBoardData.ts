@@ -2,6 +2,12 @@ import { useCallback, useState } from 'react';
 
 import { Base } from '../types';
 
+export type ChangeLog = {
+  value: string;
+  previous: number;
+  current: number;
+};
+
 type Props<T extends Base> = {
   defaultData: T[];
   updateAttribute: keyof T['data'];
@@ -9,6 +15,8 @@ type Props<T extends Base> = {
 
 export const useBoardData = <T extends Base>({ defaultData, updateAttribute }: Props<T>) => {
   const [data, setData] = useState<T[]>(defaultData);
+
+  const getValue = getValueT<T['data'], keyof T['data']>;
 
   const update = useCallback(
     (id: string, value: string, index: number) => {
@@ -33,23 +41,36 @@ export const useBoardData = <T extends Base>({ defaultData, updateAttribute }: P
 
   const dataFilteredBy = useCallback(
     (attribute: keyof T['data'], value: string) => {
-      return data.filter((r) => getValue<T['data'], keyof T['data']>(r.data, attribute) === value);
+      return data.filter((r) => getValue(r.data, attribute) === value);
     },
-    [data]
+    [data, getValue]
   );
 
   const reset = useCallback(() => {
     setData(defaultData);
   }, [defaultData]);
 
-  const ratio = useCallback(
+  const getRatio = useCallback(
     (value: unknown) => {
-      const count = data.filter(
-        (r) => getValue<T['data'], keyof T['data']>(r.data, updateAttribute) === value
-      ).length;
+      const count = data.filter((r) => getValue(r.data, updateAttribute) === value).length;
       return count / data.length;
     },
-    [data, updateAttribute]
+    [data, updateAttribute, getValue]
+  );
+
+  const getChangeLog = useCallback(
+    (columns: { name: keyof T['data']; values: string[] }): ChangeLog[] => {
+      return columns.values.map((value) => {
+        const prevs = defaultData.filter((r) => getValue(r.data, updateAttribute) === value);
+        const currents = data.filter((r) => getValue(r.data, updateAttribute) === value);
+        return {
+          value,
+          previous: prevs.length,
+          current: currents.length,
+        };
+      });
+    },
+    [defaultData, data, updateAttribute, getValue]
   );
 
   return {
@@ -57,10 +78,11 @@ export const useBoardData = <T extends Base>({ defaultData, updateAttribute }: P
     dataFilteredBy,
     update,
     reset,
-    ratio,
+    getRatio,
+    getChangeLog,
   };
 };
 
-function getValue<T, K extends keyof T>(obj: T, key: K): T[K] {
+function getValueT<T, K extends keyof T>(obj: T, key: K): T[K] {
   return obj[key];
 }
