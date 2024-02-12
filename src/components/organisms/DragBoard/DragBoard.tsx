@@ -20,7 +20,7 @@ type Props<T extends Base> = {
 
 export const DragBoard = <T extends Base>({ column, users }: Props<T>) => {
   const { name: colName, values } = column;
-  const { dataFilteredBy, update, reset, getRatio, getChangeLog } = useBoardData({
+  const { dataFilteredBy, update, reset, getCount, getRatio, getChangeLog } = useBoardData({
     defaultData: users,
     updateAttribute: colName,
   });
@@ -50,7 +50,12 @@ export const DragBoard = <T extends Base>({ column, users }: Props<T>) => {
         <StyledDroppableContainer className="drop-container">
           {values.map((col) => (
             <StyledColumn key={col}>
-              <ColumnHeader key={`head_${col}`} col={col} ratio={getRatio(col)} />
+              <ColumnHeader
+                key={`head_${col}`}
+                col={col}
+                count={getCount(col)}
+                ratio={getRatio(col)}
+              />
               <Droppables key={col} id={col} data={dataFilteredBy(colName, col)}>
                 {({ entry }) => (
                   <UserCard name={entry.data.name as string} img={entry.data.img as string} />
@@ -77,4 +82,6 @@ const StyledColumn = styled.div`
 const StyledDroppableContainer = styled.div`
   display: flex;
   gap: 0.5rem;
+  padding: 0.5rem;
+  overflow-y: auto;
 `;

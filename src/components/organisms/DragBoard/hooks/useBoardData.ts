@@ -50,6 +50,13 @@ export const useBoardData = <T extends Base>({ defaultData, updateAttribute }: P
     setData(defaultData);
   }, [defaultData]);
 
+  const getCount = useCallback(
+    (value: unknown) => {
+      return data.filter((r) => getValue(r.data, updateAttribute) === value).length;
+    },
+    [data, updateAttribute, getValue]
+  );
+
   const getRatio = useCallback(
     (value: unknown) => {
       const count = data.filter((r) => getValue(r.data, updateAttribute) === value).length;
@@ -78,6 +85,7 @@ export const useBoardData = <T extends Base>({ defaultData, updateAttribute }: P
     dataFilteredBy,
     update,
     reset,
+    getCount,
     getRatio,
     getChangeLog,
   };
