@@ -21,11 +21,11 @@ const StyledDiv = styled.div`
   align-items: center;
   background-color: white;
   color: #23221e;
-  border-radius: 2px;
+  border-radius: 10px;
   border: 1px solid #d6d3d0;
   box-shadow: 1px 1px 1px #d6d3d0;
   overflow: hidden;
-  height: 120px;
+  height: 135px;
   width: 100px;
 `;
 

@@ -1,6 +1,7 @@
 import 'smarthr-ui/smarthr-ui.css';
 
 import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { DragBoard } from './DragBoard';
@@ -28,19 +29,30 @@ export const Default: Story = {
     },
     users: [
       {
-        id: uuidv4,
+        id: uuidv4(),
         data: { name: '村上 翔太朗', rank: 'C', img: 'https://iili.io/H68O7yb.jpg' },
       },
-      { id: 'bbb', data: { name: '三苫 薫', rank: 'A', img: 'https://iili.io/J5EtPWJ.png' } },
-      { id: 'ccc', data: { name: '久保 建英', rank: 'A', img: 'https://iili.io/J5Eba3l.png' } },
-      { id: 'ddd', data: { name: '遠藤 航', rank: 'B', img: 'https://iili.io/J5Epzss.png' } },
-      { id: 'eee', data: { name: '冨安 健洋', rank: 'A', img: 'https://iili.io/J5G3Tjp.png' } },
-      { id: 'fff', data: { name: '伊東 純也', rank: 'B', img: 'https://iili.io/J5G3Eu4.png' } },
-      { id: 'ggg', data: { name: '上田 綺世', rank: 'B', img: 'https://iili.io/J5GFWOv.png' } },
+      {
+        id: uuidv4(),
+        data: { name: '須磨 英子', rank: 'C', img: 'https://iili.io/J146hUF.png' },
+      },
+      {
+        id: uuidv4(),
+        data: { name: '須磨 英知', rank: 'C', img: 'https://iili.io/J14P2bj.png' },
+      },
     ],
     onUpdate: (data: User[]) => {
       alert(JSON.stringify(data));
       return true;
     },
   },
+  decorators: [
+    (Story) => {
+      return (
+        <div style={{ margin: '1rem', backgroundColor: '#F7F6F4' }}>
+          <Story />
+        </div>
+      );
+    },
+  ],
 };

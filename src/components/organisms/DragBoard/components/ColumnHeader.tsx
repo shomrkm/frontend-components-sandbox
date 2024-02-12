@@ -21,7 +21,7 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 300px;
+  width: 240px;
   padding: 1rem;
   font-weight: bold;
 `;
