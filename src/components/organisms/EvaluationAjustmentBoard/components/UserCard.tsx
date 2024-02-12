@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import { Crew } from '../types';
+import { Evaluation } from '../types';
 
 type Props = {
-  crew: Crew['crew'];
+  crew: Evaluation['crew'];
 };
 
 export const UserCard = ({ crew }: Props) => {
