@@ -57,9 +57,7 @@ export const DragBoard = <T extends Base>({ column, users }: Props<T>) => {
                 ratio={getRatio(col)}
               />
               <Droppables key={col} id={col} data={dataFilteredBy(colName, col)}>
-                {({ entry }) => (
-                  <UserCard name={entry.data.name as string} img={entry.data.img as string} />
-                )}
+                {({ entry }) => <UserCard crew={entry.crew} />}
               </Droppables>
             </StyledColumn>
           ))}

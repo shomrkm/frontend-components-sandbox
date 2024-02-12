@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 
+import { Crew } from '../types';
+
 type Props = {
-  name: string;
-  img: string;
+  crew: Crew['crew'];
 };
 
-export const UserCard = ({ name, img }: Props) => {
+export const UserCard = ({ crew }: Props) => {
+  const fullName = `${crew.lastName} ${crew.firstName}`;
   return (
     <StyledDiv>
-      <StyledImg src={img} alt={name} />
-      <StyledName>{name}</StyledName>
+      <StyledImg src={crew.profile} alt={fullName} />
+      <StyledName>{fullName}</StyledName>
     </StyledDiv>
   );
 };

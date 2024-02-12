@@ -26,7 +26,7 @@ export const Droppables = <T extends Base>({ id, data, children }: Props<T>) => 
           ) : (
             <StyledDraggableContainer>
               {data.map((record, index) => (
-                <DraggableItem id={record.id} key={record.id} index={index}>
+                <DraggableItem id={record.crew.id} key={record.crew.id} index={index}>
                   {children({ entry: record })}
                 </DraggableItem>
               ))}
