@@ -41,4 +41,6 @@ const StyledName = styled.p`
   text-align: center;
   margin: 0;
   padding: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
 `;
