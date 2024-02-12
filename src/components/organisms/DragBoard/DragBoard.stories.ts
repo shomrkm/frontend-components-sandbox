@@ -1,6 +1,7 @@
 import 'smarthr-ui/smarthr-ui.css';
 
 import type { Meta, StoryObj } from '@storybook/react';
+import { v4 as uuidv4 } from 'uuid';
 
 import { DragBoard } from './DragBoard';
 import { User } from './types';
@@ -27,7 +28,7 @@ export const Default: Story = {
     },
     users: [
       {
-        id: 'aaa',
+        id: uuidv4,
         data: { name: '村上 翔太朗', rank: 'C', img: 'https://iili.io/H68O7yb.jpg' },
       },
       { id: 'bbb', data: { name: '三苫 薫', rank: 'A', img: 'https://iili.io/J5EtPWJ.png' } },
