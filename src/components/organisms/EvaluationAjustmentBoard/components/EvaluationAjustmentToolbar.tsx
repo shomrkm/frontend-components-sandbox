@@ -25,10 +25,11 @@ export const EvaluationAjustmentToolbar = ({ onUpdate, onReset, changeLog }: Pro
       <StyledInfo justify="flex-start" align="flex-start">
         <Stack gap={0.25}>
           {changeLog.map((log) => (
-            <StyledChangeLogText
-              key={log.value}
-              isChanged={log.previous !== log.current}
-            >{`${log.value}: ${log.previous} → ${log.current}`}</StyledChangeLogText>
+            <StyledChangeLogText key={log.value} size="S" isChanged={log.previous !== log.current}>
+              {log.current === log.previous
+                ? `${log.value}: ${log.previous}`
+                : `${log.value}: ${log.previous} → ${log.current}`}
+            </StyledChangeLogText>
           ))}
         </Stack>
       </StyledInfo>
@@ -48,7 +49,8 @@ export const EvaluationAjustmentToolbar = ({ onUpdate, onReset, changeLog }: Pro
 
 const StyledInfo = styled(Cluster)`
   border: 1px solid #d6d3d0;
-  border-radius: 4px;
+  border-radius: 20px;
+  background-color: white;
   padding: 1rem;
   flex-direction: column;
   width: 200px;
@@ -60,6 +62,6 @@ const StyledButtonDiv = styled.div`
 `;
 
 const StyledChangeLogText = styled(Text)<{ isChanged: boolean }>`
-  color: ${(props) => props.isChanged && '#e01e5a'};
+  color: ${(props) => props.isChanged && '#0075e3'};
   font-weight: ${(props) => props.isChanged && 'bold'};
 `;

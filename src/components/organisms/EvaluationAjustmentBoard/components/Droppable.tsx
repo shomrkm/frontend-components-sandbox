@@ -42,16 +42,17 @@ export const Droppables = <T extends Base>({ id, data, children }: Props<T>) => 
 const StyledDroppableZone = styled.div<{ isDragingOver: boolean }>`
   background-color: white;
   height: 500px;
-  width: 240px;
   border-radius: 20px;
   border: ${(props) => props.isDragingOver && '2px solid #00c4cc'};
   padding: 1rem;
   overflow-y: auto;
+  width: 260px;
 `;
 
 const StyledDraggableContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
 `;

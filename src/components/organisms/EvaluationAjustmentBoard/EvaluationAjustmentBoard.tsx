@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { DragDropContext, DropResult, OnDragEndResponder } from 'react-beautiful-dnd';
-import { Heading } from 'smarthr-ui';
+import { PageHeading } from 'smarthr-ui';
 import styled from 'styled-components';
 
 import { ColumnHeader } from './components/ColumnHeader';
@@ -45,7 +45,7 @@ export const EvaluationAjustmentBoard = <T extends Base>({ column, users }: Prop
 
   return (
     <StyledWrapper>
-      <Heading>評価調整</Heading>
+      <StyledPageHeading>評価調整</StyledPageHeading>
       <EvaluationAjustmentToolbar
         onUpdate={handleUpdate}
         onReset={reset}
@@ -71,6 +71,10 @@ export const EvaluationAjustmentBoard = <T extends Base>({ column, users }: Prop
     </StyledWrapper>
   );
 };
+
+const StyledPageHeading = styled(PageHeading)`
+  padding: 0 0.5rem 2rem 0;
+`;
 
 const StyledWrapper = styled.div`
   margin: 2rem;
