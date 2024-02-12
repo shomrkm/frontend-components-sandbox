@@ -1,10 +1,11 @@
 import React, { useCallback } from 'react';
 import { DragDropContext, DropResult, OnDragEndResponder } from 'react-beautiful-dnd';
+import { Heading } from 'smarthr-ui';
 import styled from 'styled-components';
 
 import { ColumnHeader } from './components/ColumnHeader';
-import { DragBoardToolbar } from './components/DragBoardToolbar';
 import { Droppables } from './components/Droppable';
+import { EvaluationAjustmentToolbar } from './components/EvaluationAjustmentToolbar';
 import { UserCard } from './components/UserCard';
 import { useBoardData } from './hooks/useBoardData';
 import { Base } from './types';
@@ -18,7 +19,7 @@ type Props<T extends Base> = {
   onUpdate: (data: T[]) => boolean;
 };
 
-export const DragBoard = <T extends Base>({ column, users }: Props<T>) => {
+export const EvaluationAjustmentBoard = <T extends Base>({ column, users }: Props<T>) => {
   const { name: colName, values } = column;
   const { dataFilteredBy, update, reset, getCount, getRatio, getChangeLog } = useBoardData({
     defaultData: users,
@@ -44,8 +45,12 @@ export const DragBoard = <T extends Base>({ column, users }: Props<T>) => {
 
   return (
     <StyledWrapper>
-      <h1>Drag Board</h1>
-      <DragBoardToolbar onUpdate={handleUpdate} onReset={reset} changeLog={getChangeLog(column)} />
+      <Heading>評価調整</Heading>
+      <EvaluationAjustmentToolbar
+        onUpdate={handleUpdate}
+        onReset={reset}
+        changeLog={getChangeLog(column)}
+      />
       <DragDropContext onDragEnd={handleDragEnd}>
         <StyledDroppableContainer className="drop-container">
           {values.map((col) => (

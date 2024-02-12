@@ -10,7 +10,7 @@ type Props = {
   changeLog: ChangeLog[];
 };
 
-export const DragBoardToolbar = ({ onUpdate, onReset, changeLog }: Props) => {
+export const EvaluationAjustmentToolbar = ({ onUpdate, onReset, changeLog }: Props) => {
   const handleUpdate = useCallback(() => {
     onUpdate();
     console.log('updated');

@@ -4,19 +4,19 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { DragBoard } from './DragBoard';
+import { EvaluationAjustmentBoard } from './EvaluationAjustmentBoard';
 import { Crew } from './types';
 
 const meta = {
-  title: 'Components/Organisms/DragBoard',
-  component: DragBoard<Crew>,
+  title: 'Components/Organisms/EvaluationAjustmentBoard',
+  component: EvaluationAjustmentBoard<Crew>,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'fullscreen',
   },
-} satisfies Meta<typeof DragBoard<Crew>>;
+} satisfies Meta<typeof EvaluationAjustmentBoard<Crew>>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
