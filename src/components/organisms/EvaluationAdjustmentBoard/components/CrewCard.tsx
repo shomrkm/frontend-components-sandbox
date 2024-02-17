@@ -6,7 +6,7 @@ type Props = {
   crew: Evaluation['crew'];
 };
 
-export const UserCard = ({ crew }: Props) => {
+export const CrewCard = ({ crew }: Props) => {
   const fullName = `${crew.lastName} ${crew.firstName}`;
   return (
     <StyledDiv>

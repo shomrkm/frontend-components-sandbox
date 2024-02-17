@@ -4,9 +4,9 @@ import { PageHeading } from 'smarthr-ui';
 import styled from 'styled-components';
 
 import { ColumnHeader } from './components/ColumnHeader';
+import { CrewCard } from './components/CrewCard';
 import { Droppables } from './components/Droppable';
 import { EvaluationAjustmentToolbar } from './components/EvaluationAjustmentToolbar';
-import { UserCard } from './components/UserCard';
 import { useBoardData } from './hooks/useBoardData';
 import { Base } from './types';
 
@@ -62,7 +62,7 @@ export const EvaluationAjustmentBoard = <T extends Base>({ column, users }: Prop
                 ratio={getRatio(col)}
               />
               <Droppables key={col} id={col} data={dataFilteredBy(colName, col)}>
-                {({ entry }) => <UserCard crew={entry.crew} />}
+                {({ entry }) => <CrewCard crew={entry.crew} />}
               </Droppables>
             </StyledColumn>
           ))}

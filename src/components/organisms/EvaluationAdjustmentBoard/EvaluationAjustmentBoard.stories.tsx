@@ -1,14 +1,13 @@
 import 'smarthr-ui/smarthr-ui.css';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { EvaluationAjustmentBoard } from './EvaluationAjustmentBoard';
 import { Evaluation } from './types';
 
 const meta = {
-  title: 'Components/Organisms/EvaluationAjustmentBoard',
+  title: 'Components/Organisms/EvaluationAdjustmentBoard',
   component: EvaluationAjustmentBoard<Evaluation>,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

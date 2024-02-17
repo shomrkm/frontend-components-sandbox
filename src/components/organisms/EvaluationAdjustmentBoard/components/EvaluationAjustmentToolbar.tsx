@@ -27,8 +27,8 @@ export const EvaluationAjustmentToolbar = ({ onUpdate, onReset, changeLog }: Pro
           {changeLog.map((log) => (
             <StyledChangeLogText key={log.value} size="S" isChanged={log.previous !== log.current}>
               {log.current === log.previous
-                ? `${log.value}: ${log.previous}`
-                : `${log.value}: ${log.previous} → ${log.current}`}
+                ? `${log.value}: ${log.previous}名`
+                : `${log.value}: ${log.previous}名 → ${log.current}名`}
             </StyledChangeLogText>
           ))}
         </Stack>
