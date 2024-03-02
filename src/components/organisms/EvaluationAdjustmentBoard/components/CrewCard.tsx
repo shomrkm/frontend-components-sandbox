@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 
+import { Evaluation } from '../types';
+
 type Props = {
-  name: string;
-  img: string;
+  crew: Evaluation['crew'];
 };
 
-export const UserCard = ({ name, img }: Props) => {
+export const CrewCard = ({ crew }: Props) => {
+  const fullName = `${crew.lastName} ${crew.firstName}`;
   return (
     <StyledDiv>
-      <StyledImg src={img} alt={name} />
-      <StyledName>{name}</StyledName>
+      <StyledImg src={crew.profile} alt={fullName} />
+      <StyledName>{fullName}</StyledName>
     </StyledDiv>
   );
 };
@@ -21,11 +23,11 @@ const StyledDiv = styled.div`
   align-items: center;
   background-color: white;
   color: #23221e;
-  border-radius: 2px;
+  border-radius: 10px;
   border: 1px solid #d6d3d0;
   box-shadow: 1px 1px 1px #d6d3d0;
   overflow: hidden;
-  height: 120px;
+  height: 135px;
   width: 100px;
 `;
 
@@ -41,4 +43,6 @@ const StyledName = styled.p`
   text-align: center;
   margin: 0;
   padding: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
 `;

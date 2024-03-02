@@ -1,11 +1,12 @@
 import React, { useCallback } from 'react';
 import { DragDropContext, DropResult, OnDragEndResponder } from 'react-beautiful-dnd';
+import { PageHeading } from 'smarthr-ui';
 import styled from 'styled-components';
 
 import { ColumnHeader } from './components/ColumnHeader';
-import { DragBoardToolbar } from './components/DragBoardToolbar';
+import { CrewCard } from './components/CrewCard';
 import { Droppables } from './components/Droppable';
-import { UserCard } from './components/UserCard';
+import { EvaluationAjustmentToolbar } from './components/EvaluationAjustmentToolbar';
 import { useBoardData } from './hooks/useBoardData';
 import { Base } from './types';
 
@@ -18,9 +19,9 @@ type Props<T extends Base> = {
   onUpdate: (data: T[]) => boolean;
 };
 
-export const DragBoard = <T extends Base>({ column, users }: Props<T>) => {
+export const EvaluationAjustmentBoard = <T extends Base>({ column, users }: Props<T>) => {
   const { name: colName, values } = column;
-  const { dataFilteredBy, update, reset, getRatio, getChangeLog } = useBoardData({
+  const { dataFilteredBy, update, reset, getCount, getRatio, getChangeLog } = useBoardData({
     defaultData: users,
     updateAttribute: colName,
   });
@@ -44,17 +45,24 @@ export const DragBoard = <T extends Base>({ column, users }: Props<T>) => {
 
   return (
     <StyledWrapper>
-      <h1>Drag Board</h1>
-      <DragBoardToolbar onUpdate={handleUpdate} onReset={reset} changeLog={getChangeLog(column)} />
+      <StyledPageHeading>評価調整</StyledPageHeading>
+      <EvaluationAjustmentToolbar
+        onUpdate={handleUpdate}
+        onReset={reset}
+        changeLog={getChangeLog(column)}
+      />
       <DragDropContext onDragEnd={handleDragEnd}>
         <StyledDroppableContainer className="drop-container">
           {values.map((col) => (
             <StyledColumn key={col}>
-              <ColumnHeader key={`head_${col}`} col={col} ratio={getRatio(col)} />
+              <ColumnHeader
+                key={`head_${col}`}
+                col={col}
+                count={getCount(col)}
+                ratio={getRatio(col)}
+              />
               <Droppables key={col} id={col} data={dataFilteredBy(colName, col)}>
-                {({ entry }) => (
-                  <UserCard name={entry.data.name as string} img={entry.data.img as string} />
-                )}
+                {({ entry }) => <CrewCard crew={entry.crew} />}
               </Droppables>
             </StyledColumn>
           ))}
@@ -63,6 +71,10 @@ export const DragBoard = <T extends Base>({ column, users }: Props<T>) => {
     </StyledWrapper>
   );
 };
+
+const StyledPageHeading = styled(PageHeading)`
+  padding: 0 0.5rem 2rem 0;
+`;
 
 const StyledWrapper = styled.div`
   margin: 2rem;
@@ -77,4 +89,6 @@ const StyledColumn = styled.div`
 const StyledDroppableContainer = styled.div`
   display: flex;
   gap: 0.5rem;
+  padding: 0.5rem;
+  overflow-y: auto;
 `;

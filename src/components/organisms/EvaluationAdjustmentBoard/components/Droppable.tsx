@@ -26,7 +26,7 @@ export const Droppables = <T extends Base>({ id, data, children }: Props<T>) => 
           ) : (
             <StyledDraggableContainer>
               {data.map((record, index) => (
-                <DraggableItem id={record.id} key={record.id} index={index}>
+                <DraggableItem id={record.crew.id} key={record.crew.id} index={index}>
                   {children({ entry: record })}
                 </DraggableItem>
               ))}
@@ -40,18 +40,19 @@ export const Droppables = <T extends Base>({ id, data, children }: Props<T>) => 
 };
 
 const StyledDroppableZone = styled.div<{ isDragingOver: boolean }>`
-  background-color: #f5f4f3;
+  background-color: white;
   height: 500px;
-  width: 300px;
-  border-radius: 0.5rem;
+  border-radius: 20px;
   border: ${(props) => props.isDragingOver && '2px solid #00c4cc'};
   padding: 1rem;
   overflow-y: auto;
+  width: 260px;
 `;
 
 const StyledDraggableContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
 `;
