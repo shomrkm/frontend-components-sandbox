@@ -58,7 +58,7 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ type = 'button', variant = 'primary', size = 'sm', ...props }, ref) => {
     return (
-      <button ref={ref} type={type} css={[style, variants[variant], sizes[size]]}>
+      <button {...props} ref={ref} type={type} css={[style, variants[variant], sizes[size]]}>
         <span>{props.children}</span>
       </button>
     );
