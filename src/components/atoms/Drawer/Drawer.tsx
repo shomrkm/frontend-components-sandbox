@@ -67,7 +67,6 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
     return null;
   }
 
-  console.log('drawerheight', drawerHeight, 'drawertop', drawerTop);
   return createPortal(
     <div
       ref={drawerRef}
@@ -92,29 +91,29 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 };
 
 const ChildrenWrapper = styled.div<{ isOpen: boolean; height?: number; top?: number }>(
-  ({ theme: { transition, zIndex }, isOpen, height, top }) => css`
+  ({ isOpen, height, top }) => css`
     position: fixed;
     top: ${top ? `${top}px` : 0};
     right: 0;
     width: auto;
     height: ${height ? `${height}px` : '100%'};
     transform: translateX(${isOpen ? 0 : '100%'});
-    transition: transform ${transition.duration};
-    z-index: ${zIndex.FIXED_MENU};
+    transition: transform 100;
+    z-index: 99;
   `
 );
 
 const Background = styled.div<{ isOpen: boolean }>(
-  ({ theme: { color, transition, zIndex }, isOpen }) => css`
+  ({ isOpen }) => css`
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: ${color.SCRIM};
-    opacity: ${isOpen ? 1 : 0};
+    background-color: #030302;
+    opacity: ${isOpen ? 0.5 : 0};
     visibility: ${isOpen ? 'visible' : 'hidden'};
-    transition: opacity ${transition.expression}, visibility ${transition.expression};
-    z-index: ${zIndex.FIXED_MENU};
+    transition: opacity '100ms ease-in-out', visibility 100ms ease-in-out;
+    z-index: 99;
   `
 );
