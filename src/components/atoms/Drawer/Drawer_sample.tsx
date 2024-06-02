@@ -7,7 +7,7 @@ import { useTransitionState } from './useTransitionState';
 type Props = {
   isOpen: boolean;
   onClose: () => void;
-  container?: HTMLElement | null;
+  container: HTMLElement | null;
   isModal?: boolean;
   style?: CSSProperties;
 };
