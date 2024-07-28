@@ -1,5 +1,4 @@
 import { css, keyframes } from '@emotion/react';
-import React from 'react';
 
 const stretch = keyframes`
   0%,
