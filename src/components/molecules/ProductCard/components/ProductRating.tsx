@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-import React from 'react';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 import { useProductCardContext } from '../hooks/ProductCardContext';

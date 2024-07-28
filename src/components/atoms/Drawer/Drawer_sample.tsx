@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, PropsWithChildren, useEffect, useRef, useState } from 'react';
+import { CSSProperties, FC, PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import styled, { css } from 'styled-components';
 

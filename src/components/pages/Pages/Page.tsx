@@ -1,14 +1,15 @@
-import React from 'react';
+import { FC, useState } from 'react';
 
 import { Header } from '@/components/organisms';
+
 import './page.css';
 
 type User = {
   name: string;
 };
 
-export const Page: React.FC = () => {
-  const [user, setUser] = React.useState<User>();
+export const Page: FC = () => {
+  const [user, setUser] = useState<User>();
 
   return (
     <article>
