@@ -1,0 +1,19 @@
+{
+  "engines": {
+    "eslint": {
+      "enabled": true
+    }
+  },
+  "exclude_paths": [
+    "config/",
+    "dist/",
+    "**/node_modules/",
+    "**/test/",
+    "**/tests/",
+    "**/__tests__/",
+    "**/vendor/",
+    "**/*.d.ts",
+    "**/*.stories.tsx",
+    "**/package-lock.json"
+  ]
+}
