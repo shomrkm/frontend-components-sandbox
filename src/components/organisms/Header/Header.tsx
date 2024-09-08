@@ -35,6 +35,22 @@ export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps
         <h1>Acme</h1>
       </div>
       <div>
+        <p>duplicated sample</p>
+        <p>duplicated sample</p>
+        <p>duplicated sample</p>
+        <p>duplicated sample</p>
+        <p>duplicated sample</p>
+        <p>duplicated sample</p>
+      </div>
+      <div>
+        <p>duplicated sample</p>
+        <p>duplicated sample</p>
+        <p>duplicated sample</p>
+        <p>duplicated sample</p>
+        <p>duplicated sample</p>
+        <p>duplicated sample</p>
+      </div>
+      <div>
         {user ? (
           <>
             <span className="welcome">
@@ -48,12 +64,6 @@ export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps
           <>
             <Button size="sm" onClick={onLogin}>
               Log in
-            </Button>
-            <Button size="sm" onClick={onCreateAccount}>
-              Sign up
-            </Button>
-            <Button size="sm" onClick={onCreateAccount}>
-              Sign up
             </Button>
             <Button size="sm" onClick={onCreateAccount}>
               Sign up
