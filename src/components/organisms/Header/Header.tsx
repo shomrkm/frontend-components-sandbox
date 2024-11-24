@@ -52,6 +52,35 @@ export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps
             <Button size="sm" onClick={onCreateAccount}>
               Sign up
             </Button>
+            <div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+              <div>duplication test</div>
+            </div>
           </>
         )}
       </div>

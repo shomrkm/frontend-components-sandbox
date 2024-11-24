@@ -62,33 +62,35 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <button {...props} ref={ref} type={type} css={[style, variants[variant], sizes[size]]}>
           <span>{props.children}</span>
         </button>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
-        <div>duplication test</div>
+        <div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+          <div>duplication test</div>
+        </div>
       </>
     );
   }
