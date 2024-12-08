@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import './style.css';
 
 type Props = {
   images: {
@@ -12,16 +11,6 @@ type Props = {
 export const ImageList: FC<Props> = ({ images }) => {
   return (
     <div className="list">
-      {images.map((image) => (
-        <div key={image.id} className="item">
-          <img src={image.src} alt={image.alt} />
-        </div>
-      ))}
-      {images.map((image) => (
-        <div key={image.id} className="item">
-          <img src={image.src} alt={image.alt} />
-        </div>
-      ))}
       {images.map((image) => (
         <div key={image.id} className="item">
           <img src={image.src} alt={image.alt} />
