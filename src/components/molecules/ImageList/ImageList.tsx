@@ -16,6 +16,11 @@ export const ImageList: FC<Props> = ({ images }) => {
           <img src={image.src} alt={image.alt} />
         </div>
       ))}
+      {images.map((image) => (
+        <div key={image.id} className="item">
+          <img src={image.src} alt={image.alt} />
+        </div>
+      ))}
     </div>
   );
 };
