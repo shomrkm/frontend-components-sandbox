@@ -44,14 +44,6 @@ function ProductCard({ product, image, info, action }: Props) {
           {info}
           {action}
         </div>
-        <div css={bottomStyle}>
-          {info}
-          {action}
-        </div>
-        <div css={bottomStyle}>
-          {info}
-          {action}
-        </div>
       </div>
     </ProductCardContext.Provider>
   );
